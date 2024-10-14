@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <form action="${pageContext.request.contextPath}/admin/category/insert" method="post" enctype="multipart/form-data">
   <label for="category_name">Category Name:</label><br>
-  <input type="text" id="category_name" name="category_name" ><br>
+  <input type="text" id="categoryname" name="categoryname" ><br>
   
   <label for="images">Images:</label><br>
   <img height="150" width="200" src =""/>

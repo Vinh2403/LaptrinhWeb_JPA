@@ -31,8 +31,8 @@ public class CategoryController extends HttpServlet {
 		String url = req.getRequestURI();
 		if(url.contains("categories"))
 		{
-		List<Category> list = 	category_Service.findAll();
-		System.out.print(list.get(0).getImages());
+		List<Category> list = category_Service.findAll();		//Lấy dữ liệu ra từ DB.
+		//System.out.print(list.get(0).getImages());
 		req.setAttribute("listcate", list);		//luu tru lai de ti nua day ra view
 		req.getRequestDispatcher("/views/admin/category_list.jsp").forward(req, resp);	//quang vao file giao dien.
 		}
@@ -70,7 +70,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	{
 		Category category = new Category();
 		
-		String category_name = req.getParameter("category_name");
+		String category_name = req.getParameter("categoryname");
 		String status_temp = req.getParameter("status");
 		int status = Integer.parseInt(status_temp);
 			category.setCategoryname(category_name);
@@ -108,8 +108,8 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	}
 	else if(url.contains("update"))			// Update dung POST
 	{
-		int category_id = Integer.parseInt(req.getParameter("category_id"));
-		String category_name = req.getParameter("category_name");
+		int category_id = Integer.parseInt(req.getParameter("categoryid"));
+		String category_name = req.getParameter("categoryname");
 		String status_temp = req.getParameter("status");
 		int status = Integer.parseInt(status_temp);
 		

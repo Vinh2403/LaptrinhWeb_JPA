@@ -31,8 +31,8 @@
 			</td>
 			
 			
-			<td>${cate.category_id }</td>
-			<td>${cate.category_name }</td>
+			<td>${cate.categoryId }</td>
+			<td>${cate.categoryname }</td>
 			
 			<td>
 			<c:if test="${cate.status ==1 }">
@@ -43,8 +43,8 @@
 			</c:if>
 			</td>
 			<td><a
-				href="<c:url value='/admin/category/edit?id=${cate.category_id }'/>">Sửa</a> | <a
-				href="<c:url value='/admin/category/delete?id=${cate.category_id}'/>">Xóa</a></td>
+				href="<c:url value='/admin/category/edit?id=${cate.categoryId}'/>">Sửa</a> | <a
+				href="<c:url value='/admin/category/delete?id=${cate.categoryId}'/>">Xóa</a></td>
 		</tr>
 	</c:forEach>
 </table>
