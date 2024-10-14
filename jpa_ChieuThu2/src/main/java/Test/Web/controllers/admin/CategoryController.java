@@ -47,6 +47,7 @@ public class CategoryController extends HttpServlet {
 			//Loi ra duoc cai du lieu co san hien thi truoc de nguoi dung biet muon sua nua khong:
 			Category category = category_Service.findById(id);
 			req.setAttribute("cate", category);
+			
 			req.getRequestDispatcher("/views/admin/category_edit.jsp").forward(req, resp);	
 		}
 		else if(url.contains("/admin/category/delete"))

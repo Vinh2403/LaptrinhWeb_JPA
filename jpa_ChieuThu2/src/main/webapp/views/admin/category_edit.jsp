@@ -4,11 +4,14 @@
 <form action="${pageContext.request.contextPath}/admin/category/update"
 	method="post" enctype="multipart/form-data">
 	<input
-		type="text" id="category_id" name="category_id"
-		value="${cate.category_id}" hidden="hidden"><br>
-	<label for="category_name">Category Name:</label><br> <input
-		type="text" id="category_name" name="category_name"
-		value="${cate.category_name}"><br> <label for="images">Images:</label><br>
+		type="text" id="categoryid" name="categoryid"
+		value="${cate.categoryId}" hidden="hidden"><br>
+		
+	<label for="categoryname">Category Name:</label><br> <input
+		type="text" id="categoryname" name="categoryname"
+		value="${cate.categoryname}"><br> 
+		
+	<label for="images">Images:</label><br>
 	<c:if test="${cate.images.substring(0, 5) !='https'}">
 		<c:url value="/image?fname=${cate.images}" var="imgUrl"></c:url>
 	</c:if>
