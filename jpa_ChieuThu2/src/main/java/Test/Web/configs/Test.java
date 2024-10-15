@@ -9,6 +9,7 @@ public class Test {
 	public static void main(String[] args) {
 		EntityManager enma = JPAConfig.getEntityManager();
 		EntityTransaction trans = enma.getTransaction();
+		
 		Category cate = new Category();		//entity
 		cate.setCategoryname("Iphone");
 		cate.setImages("abc.jpg");

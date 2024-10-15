@@ -98,13 +98,13 @@ public class CategoryDao implements ICategoryDao{
 		EntityManager enma = JPAConfig.getEntityManager();
 		String jpql = "SELECT c FROM Category c WHERE c.catename like :catname";
 		TypedQuery<Category> query = enma.createQuery(jpql, Category.class);
-		query.setParameter("catename", "%" + catname + "%");
+		query.setParameter("catname", "%" + catname + "%");
 
 		return query.getResultList();
 	}
 
 	@Override
-	public List<Category> findAll(int page, int pagesize) {
+	public List<Category> findAll(int page, int pagesize) {		//Find all theo từng trang. Mỗi trang có kích thước pagesize.(như hồi học KTMT thôi - cái paging)
 		EntityManager enma = JPAConfig.getEntityManager();
 		TypedQuery<Category> query = enma.createNamedQuery("Category.findAll", Category.class);
 		query.setFirstResult(page * pagesize);

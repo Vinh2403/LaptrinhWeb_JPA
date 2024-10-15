@@ -6,8 +6,11 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import Test.Web.entity.Category;
+import Test.Web.entity.Video;
 import Test.Web.services.IcategoryService;
+import Test.Web.services.IvideoService;
 import Test.Web.services.impl.CategoryService;
+import Test.Web.services.impl.VideoService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,48 +20,48 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import Test.Web.utils.Constant;
 @MultipartConfig(fileSizeThreshold = 1024*1024, maxFileSize = 1024*1024*5, maxRequestSize = 1024*1024*5*5 )
-@WebServlet(urlPatterns = {"/admin/categories", "/admin/category/add", "/admin/category/insert", 
-							"/admin/category/edit", "/admin/category/update",
-							"/admin/category/delete", "/admin/category/search"})
-public class CategoryController extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin/videos", "/admin/video/add", "/admin/video/insert", 
+							"/admin/video/edit", "/admin/video/update",
+							"/admin/video/delete", "/admin/video/search"})
+public class VideoController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	public IcategoryService category_Service = new CategoryService();
-	@Override
+	public IvideoService video_Service = new VideoService();
+	@Override	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		String url = req.getRequestURI();
-		if(url.contains("categories"))
+		if(url.contains("videos"))
 		{
-		List<Category> list = category_Service.findAll();		//Lấy dữ liệu ra từ DB.
-		//System.out.print(list.get(0).getImages());
-		req.setAttribute("listcate", list);		//luu tru lai de ti nua day ra view
-		req.getRequestDispatcher("/views/admin/category_list.jsp").forward(req, resp);	//quang vao file giao dien.
+		List<Video> list = video_Service.findAll();		//Lấy dữ liệu ra từ DB.
+		//System.out.print(list.get(0).);
+		req.setAttribute("listvid", list);		//luu tru lai de ti nua day ra view
+		req.getRequestDispatcher("/views/admin/video_list.jsp").forward(req, resp);	//quang vao file giao dien.
 		}
 		else if(url.contains("add"))
 		{
-			req.getRequestDispatcher("/views/admin/category_add.jsp").forward(req, resp);	//quang vao file giao dien.
+			req.getRequestDispatcher("/views/admin/video_add.jsp").forward(req, resp);	//quang vao file giao dien.
 		}
 		else if(url.contains("edit"))
 		{
-			int id = Integer.parseInt(req.getParameter("id"));		//id la ten dat trong file category_lsit .jsp;
+			String vidid = req.getParameter("id");		//id la ten dat trong file category_lsit .jsp;
 			
 			//Loi ra duoc cai du lieu co san hien thi truoc de nguoi dung biet muon sua nua khong:
-			Category category = category_Service.findById(id);
-			req.setAttribute("cate", category);
+			Video video = video_Service.findById(vidid);
+			req.setAttribute("vid", video);
 			
-			req.getRequestDispatcher("/views/admin/category_edit.jsp").forward(req, resp);	
+			req.getRequestDispatcher("/views/admin/video_edit.jsp").forward(req, resp);	
 		}
-		else if(url.contains("/admin/category/delete"))
+		else if(url.contains("/admin/video/delete"))
 		{
-			int id = Integer.parseInt(req.getParameter("id"));
+			String vidid = req.getParameter("id");
 			try {
-				category_Service.delete(id);
+				video_Service.delete(vidid);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-				resp.sendRedirect(req.getContextPath() + "/admin/categories");		
+				resp.sendRedirect(req.getContextPath() + "/admin/videos");		
 		}
 	}
 @Override
@@ -69,9 +72,9 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	
 	if(url.contains("insert"))
 	{
-		Category category = new Category();
+		Video video = new Video();
 		
-		String category_name = req.getParameter("categoryname");
+		String video_name = req.getParameter("categoryname");
 		String status_temp = req.getParameter("status");
 		int status = Integer.parseInt(status_temp);
 			category.setCategoryname(category_name);
@@ -104,7 +107,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		}
 		
 		
-		category_Service.insert(category);
+		video_Service.insert(video);
 		resp.sendRedirect(req.getContextPath()+"/admin/categories");
 	}
 	else if(url.contains("update"))			// Update dung POST
@@ -153,7 +156,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 			e.printStackTrace();
 		}
 		
-		category_Service.update(category);
+		video_Service.update(category);
 		resp.sendRedirect(req.getContextPath()+"/admin/categories");
 	}
 }

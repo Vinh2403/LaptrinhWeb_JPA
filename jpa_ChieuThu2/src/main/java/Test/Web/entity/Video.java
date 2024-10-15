@@ -27,7 +27,7 @@ public class Video implements Serializable {
 	private String title;
 
 	@Column(name="Views")
-	private int views;
+	private Integer views;
 	
 
 	
@@ -105,13 +105,13 @@ public class Video implements Serializable {
 
 
 
-	public int getViews() {
+	public Integer getViews() {
 		return views;
 	}
 
 
 
-	public void setViews(int views) {
+	public void setViews(Integer views) {
 		this.views = views;
 	}
 
