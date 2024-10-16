@@ -18,6 +18,7 @@
 	  <label for="VideoTitle">Video Title: </label>
 	  <input type="text" id="VideoTitle" name="VideoTitle" >
  	</div>
+ 	
  	<div>
  		<label for="ViewCount"> View Count</label>
  		<input type="text" id="ViewCount" name="ViewCount" value="0">

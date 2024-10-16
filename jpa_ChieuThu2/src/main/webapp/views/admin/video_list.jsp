@@ -54,8 +54,8 @@
 			</c:if>
 			</td>
 			<td><a
-				href="<c:url value='/admin/video/edit?id=${cate.categoryId}'/>">Sửa</a> | <a
-				href="<c:url value='/admin/video/delete?id=${cate.categoryId}'/>">Xóa</a></td>
+				href="<c:url value='/admin/video/edit?id=${vid.videoId}'/>">Sửa</a> | <a
+				href="<c:url value='/admin/video/delete?id=${vid.videoId}'/>">Xóa</a></td>
 		</tr>
 	</c:forEach>
 </table>
